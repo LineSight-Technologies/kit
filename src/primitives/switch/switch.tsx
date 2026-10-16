@@ -9,7 +9,7 @@ import { useFieldControl } from "../field/field";
 export const switchVariants = cva(
   [
     "peer group inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
-    "transition-colors duration-2 ease-ls-out",
+    "transition-colors duration-200 ease-ls-out",
     "outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
     "disabled:pointer-events-none disabled:opacity-50",
     "data-[state=checked]:bg-accent data-[state=unchecked]:bg-paper-5",
@@ -26,7 +26,7 @@ export const switchVariants = cva(
 );
 
 const thumbVariants = cva(
-  "pointer-events-none block rounded-full bg-surface shadow-ls-1 transition-transform duration-2 ease-ls-out data-[state=unchecked]:translate-x-0",
+  "pointer-events-none block rounded-full bg-surface shadow-ls-1 transition-transform duration-200 ease-ls-out data-[state=unchecked]:translate-x-0",
   {
     variants: {
       size: {

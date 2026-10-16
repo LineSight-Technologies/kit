@@ -28,7 +28,7 @@ function Replay({ cls, use }: { cls: string; use: string }) {
     <button
       type="button"
       onClick={() => setRun((n) => n + 1)}
-      className="flex flex-col items-start gap-2 rounded-lg border border-line bg-surface p-3 text-left outline-none transition-colors duration-1 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+      className="flex flex-col items-start gap-2 rounded-lg border border-line bg-surface p-3 text-left outline-none transition-colors duration-150 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
     >
       <div className="flex h-16 w-40 items-center justify-center overflow-hidden rounded-md bg-surface-3">
         <div key={run} className={`size-8 rounded-md bg-accent ${cls}`} />
@@ -47,7 +47,7 @@ function ShimmerReplay() {
     <button
       type="button"
       onClick={() => setRun((n) => n + 1)}
-      className="flex flex-col items-start gap-2 rounded-lg border border-line bg-surface p-3 text-left outline-none transition-colors duration-1 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+      className="flex flex-col items-start gap-2 rounded-lg border border-line bg-surface p-3 text-left outline-none transition-colors duration-150 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
     >
       <div className="relative h-16 w-40 overflow-hidden rounded-md bg-surface-3">
         <div key={run} className="absolute inset-0 animate-ls-shimmer bg-gradient-to-r from-transparent via-surface to-transparent" />
@@ -66,7 +66,7 @@ function SpinReplay() {
     <button
       type="button"
       onClick={() => setRun((n) => n + 1)}
-      className="flex flex-col items-start gap-2 rounded-lg border border-line bg-surface p-3 text-left outline-none transition-colors duration-1 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+      className="flex flex-col items-start gap-2 rounded-lg border border-line bg-surface p-3 text-left outline-none transition-colors duration-150 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
     >
       <div className="flex h-16 w-40 items-center justify-center rounded-md bg-surface-3">
         <div key={run} className="size-6 animate-ls-spin rounded-full border-2 border-line-strong border-t-accent" />
@@ -112,20 +112,20 @@ function Loops() {
 function Easings() {
   const [on, setOn] = useState(false);
   const rows = [
-    { label: "ease-ls-out", cls: "duration-3 ease-ls-out", use: "entrances, movement" },
-    { label: "ease-ls-inout", cls: "duration-3 ease-ls-inout", use: "exits, reversals" },
+    { label: "ease-ls-out", cls: "duration-300 ease-ls-out", use: "entrances, movement" },
+    { label: "ease-ls-inout", cls: "duration-300 ease-ls-inout", use: "exits, reversals" },
   ];
   const durations = [
-    { label: "duration-1", cls: "duration-1 ease-ls-out", use: "150ms, hover and focus" },
-    { label: "duration-2", cls: "duration-2 ease-ls-out", use: "200ms, menus and toasts" },
-    { label: "duration-3", cls: "duration-3 ease-ls-out", use: "320ms, sheets and page content" },
+    { label: "duration-150", cls: "duration-150 ease-ls-out", use: "150ms, hover and focus" },
+    { label: "duration-200", cls: "duration-200 ease-ls-out", use: "200ms, menus and toasts" },
+    { label: "duration-300", cls: "duration-300 ease-ls-out", use: "320ms, sheets and page content" },
   ];
   return (
     <button
       type="button"
       onClick={() => setOn((v) => !v)}
       aria-pressed={on}
-      className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-line bg-surface p-4 text-left outline-none transition-colors duration-1 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+      className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-line bg-surface p-4 text-left outline-none transition-colors duration-150 hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
     >
       {[...rows, ...durations].map((r) => (
         <div key={r.label} className="flex items-center gap-4">
@@ -169,9 +169,9 @@ export const motionEntry: KitEntry = {
     {
       title: "Easings and durations",
       render: () => <Easings />,
-      code: `<button className="transition-colors duration-1">hover feedback</button>
-<div className="transition-transform duration-3 ease-ls-out">enter</div>
-<div className="transition-transform duration-2 ease-ls-inout">leave</div>`,
+      code: `<button className="transition-colors duration-150">hover feedback</button>
+<div className="transition-transform duration-300 ease-ls-out">enter</div>
+<div className="transition-transform duration-200 ease-ls-inout">leave</div>`,
     },
   ],
 };

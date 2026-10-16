@@ -129,7 +129,7 @@ describe("Combobox", () => {
     const user = userEvent.setup();
     render(<Single loading />);
     await user.click(screen.getByRole("combobox"));
-    expect(await screen.findByRole("status", { name: "Loading" })).toBeInTheDocument();
+    expect(await screen.findByRole("status")).toHaveTextContent("Loading");
     expect(screen.queryAllByRole("option")).toHaveLength(0);
   });
 

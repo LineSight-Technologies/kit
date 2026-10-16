@@ -22,10 +22,10 @@ describe("Input", () => {
 
   it("className wins and ref forwards", () => {
     const ref = createRef<HTMLInputElement>();
-    render(<Input ref={ref} className="px-6" aria-label="w" />);
+    render(<Input ref={ref} className="h-10" aria-label="w" />);
     expect(ref.current).toBe(screen.getByLabelText("w"));
-    expect(ref.current).toHaveClass("px-6");
-    expect(ref.current).not.toHaveClass("px-3");
+    expect(ref.current).toHaveClass("h-10");
+    expect(ref.current).not.toHaveClass("h-control");
   });
 
   it("invalid + disabled states", () => {

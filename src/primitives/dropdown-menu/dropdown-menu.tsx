@@ -20,7 +20,7 @@ export const menuContentClass =
 
 /** Row chrome shared by item, checkbox item, radio item and sub trigger. */
 export const menuItemClass =
-  "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-fg outline-none transition-colors duration-1 " +
+  "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-fg outline-none transition-colors duration-150 " +
   "data-[highlighted]:bg-surface-3 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-fg-2";
 
 const menuItemDestructiveClass =

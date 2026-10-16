@@ -47,7 +47,7 @@ export const RadioGroupItem = forwardRef<ElementRef<typeof RadioGroupPrimitive.I
         id={id}
         className={cn(
           "peer inline-flex size-4 shrink-0 items-center justify-center rounded-full border border-line-strong bg-surface",
-          "transition-colors duration-1 hover:border-fg-3",
+          "transition-colors duration-150 hover:border-fg-3",
           "outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
           "disabled:pointer-events-none disabled:opacity-50",
           "data-[state=checked]:border-accent",
@@ -102,7 +102,7 @@ export const RadioCard = forwardRef<ElementRef<typeof RadioGroupPrimitive.Item>,
       ref={ref}
       className={cn(
         "flex w-full items-center justify-between gap-3 rounded-lg border border-line bg-surface px-4 py-3 text-left text-sm text-fg",
-        "transition-colors duration-1 hover:border-line-strong",
+        "transition-colors duration-150 hover:border-line-strong",
         "outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
         "disabled:pointer-events-none disabled:opacity-50",
         "data-[state=checked]:border-accent data-[state=checked]:bg-accent-soft",

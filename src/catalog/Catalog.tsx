@@ -144,7 +144,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={onCopy}
       aria-label={copied ? "Copied" : "Copy code"}
-      className="absolute right-2 top-2 inline-flex size-7 items-center justify-center rounded-md text-fg-3 outline-none transition-colors duration-1 hover:bg-surface-3 hover:text-fg focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+      className="absolute right-2 top-2 inline-flex size-7 items-center justify-center rounded-md text-fg-3 outline-none transition-colors duration-150 hover:bg-surface-3 hover:text-fg focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
     >
       {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
     </button>
@@ -295,7 +295,7 @@ export function Catalog({ entries: extraEntries, entryId, onNavigate, bare: bare
               }}
               placeholder="Search"
               aria-label="Search components"
-              className="h-control-sm w-full rounded-md border border-line bg-surface pl-8 pr-2.5 text-sm text-fg outline-none transition-colors duration-1 placeholder:text-fg-3 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface-2"
+              className="h-control-sm w-full rounded-md border border-line bg-surface pl-8 pr-2.5 text-sm text-fg outline-none transition-colors duration-150 placeholder:text-fg-3 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface-2"
             />
           </label>
         </div>
@@ -317,7 +317,7 @@ export function Catalog({ entries: extraEntries, entryId, onNavigate, bare: bare
                       aria-current={active ? "page" : undefined}
                       data-built={built ? "true" : "false"}
                       className={[
-                        "flex h-control-sm items-center rounded-md px-2 text-sm outline-none transition-colors duration-1 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface-2",
+                        "flex h-control-sm items-center rounded-md px-2 text-sm outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface-2",
                         active ? "bg-surface-3 font-medium text-fg" : built ? "text-fg-2 hover:bg-surface-3 hover:text-fg" : "text-fg-3 hover:bg-surface-3 hover:text-fg-2",
                       ].join(" ")}
                     >

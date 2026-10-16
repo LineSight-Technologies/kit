@@ -11,7 +11,7 @@ import { useFieldControl } from "../field/field";
 
 /** Border, surface, type and height. Padding and focus handling are added by each control. */
 export const controlVariants = cva(
-  "rounded-md border border-line bg-surface text-sm text-fg transition-colors duration-1 hover:border-line-strong",
+  "rounded-md border border-line bg-surface text-sm text-fg transition-colors duration-150 hover:border-line-strong",
   {
     variants: {
       size: {

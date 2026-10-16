@@ -17,6 +17,7 @@ import {
 import { cn } from "../../lib/cn";
 import { useFieldControl } from "../field/field";
 import { controlVariants, type ControlSize } from "../input/input";
+import { Spinner } from "../spinner/spinner";
 
 export interface ComboboxOption {
   value: string;
@@ -215,7 +216,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>((props, ref) =
                       aria-label={`Remove ${byValue.get(v)?.label ?? v}`}
                       onClick={(e) => remove(v, e)}
                       onPointerDown={(e) => e.stopPropagation()}
-                      className="inline-flex size-4 items-center justify-center rounded-sm text-fg-3 transition-colors duration-1 hover:bg-surface-2 hover:text-fg"
+                      className="inline-flex size-4 items-center justify-center rounded-sm text-fg-3 transition-colors duration-150 hover:bg-surface-2 hover:text-fg"
                     >
                       <X className="size-3" />
                     </button>
@@ -237,7 +238,7 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>((props, ref) =
                 emit([]);
               }}
               onPointerDown={(e) => e.stopPropagation()}
-              className="inline-flex size-4 shrink-0 items-center justify-center rounded-sm text-fg-3 transition-colors duration-1 hover:text-fg"
+              className="inline-flex size-4 shrink-0 items-center justify-center rounded-sm text-fg-3 transition-colors duration-150 hover:text-fg"
             >
               <X className="size-4" />
             </button>
@@ -276,12 +277,8 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>((props, ref) =
             <CommandPrimitive.List className="max-h-72 overflow-auto p-1">
               {loading && (
                 // Not cmdk's Loading: it renders role="progressbar", which LineSight bans.
-                <div role="status" aria-label="Loading" className="flex items-center justify-center py-6">
-                  {/* TODO(spinner): swap for <Spinner size="sm" /> once src/primitives/spinner lands */}
-                  <svg className="size-4 animate-ls-spin text-fg-3" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.25" strokeWidth="2.5" />
-                    <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-                  </svg>
+                <div className="flex items-center justify-center py-6 text-fg-3">
+                  <Spinner size="md" label="Loading" />
                 </div>
               )}
               {!loading && !showCreate && (

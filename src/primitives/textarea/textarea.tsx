@@ -82,7 +82,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         onChange={handleChange}
         className={cn(
           "block w-full rounded-md border border-line bg-surface px-3 py-2 text-sm leading-5 text-fg placeholder:text-fg-3",
-          "transition-colors duration-1 hover:border-line-strong",
+          "transition-colors duration-150 hover:border-line-strong",
           "outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
           "aria-invalid:border-danger aria-invalid:focus-visible:ring-danger",
           "disabled:pointer-events-none disabled:opacity-50",

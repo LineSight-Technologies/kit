@@ -10,7 +10,7 @@ import { useFieldControl } from "../field/field";
 export const checkboxVariants = cva(
   [
     "peer inline-flex shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface text-accent-fg",
-    "transition-colors duration-1 hover:border-fg-3",
+    "transition-colors duration-150 hover:border-fg-3",
     "outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
     "aria-invalid:border-danger aria-invalid:focus-visible:ring-danger",
     "disabled:pointer-events-none disabled:opacity-50",

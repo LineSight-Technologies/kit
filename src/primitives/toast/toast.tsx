@@ -40,9 +40,9 @@ function Toaster({ toastOptions, className, style, ...props }: ToasterProps) {
           title: "font-medium text-fg",
           description: "text-fg-2",
           actionButton:
-            "ml-2 inline-flex h-7 shrink-0 items-center rounded-md bg-ink px-2.5 text-xs font-medium text-fg-inverse transition-colors duration-1 hover:bg-ink-2 outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+            "ml-2 inline-flex h-7 shrink-0 items-center rounded-md bg-ink px-2.5 text-xs font-medium text-fg-inverse transition-colors duration-150 hover:bg-ink-2 outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
           cancelButton:
-            "ml-2 inline-flex h-7 shrink-0 items-center rounded-md px-2.5 text-xs font-medium text-fg-2 transition-colors duration-1 hover:bg-surface-3 outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+            "ml-2 inline-flex h-7 shrink-0 items-center rounded-md px-2.5 text-xs font-medium text-fg-2 transition-colors duration-150 hover:bg-surface-3 outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
           closeButton: "text-fg-3 hover:text-fg",
           ...toastOptions?.classNames,
         },
