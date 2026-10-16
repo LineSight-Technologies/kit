@@ -8,11 +8,10 @@
  * Usage: node scripts/lint-classes.mjs [dir...]   (default: src)
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join, relative, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const roots = process.argv.slice(2).length ? process.argv.slice(2) : ["src"];
-
-const RULES = [
+export const RULES = [
   // v3/v4 divergence
   { re: /(?<![\w-])shadow(?:-(?:sm|md|lg|xl|2xl|inner|none))?(?![\w-])/g, msg: "bare shadow scale differs between v3 and v4 — use shadow-ls-1|2|3|flame" },
   { re: /(?<![\w-])rounded(?:-(?:[tblr]|[tb][lr]|[se]|ss|se|es|ee))?(?![\w-])/g, msg: "bare `rounded` differs between v3 and v4 — give a size: rounded-sm|md|lg|xl|full" },
@@ -42,6 +41,24 @@ const RULES = [
   { re: /(?<![\w-])font-(?:serif|mono)(?![\w-])/g, msg: "no serif; monospace only for code/measurements via font-mono in app code, not kit chrome", warnOnly: true },
 ];
 
+/** Lint one file's text. Returns findings; `warnOnly` findings do not fail. */
+export function lintText(text, file = "") {
+  const findings = [];
+  text.split("\n").forEach((line, i) => {
+    if (/lint-classes-ignore/.test(line)) return;
+    const strings = line.match(/(["'`])(?:(?!\1)[^\\]|\\.)*\1/g);
+    if (!strings) return;
+    for (const s of strings) {
+      for (const rule of RULES) {
+        rule.re.lastIndex = 0;
+        const m = rule.re.exec(s);
+        if (m) findings.push({ file, line: i + 1, match: m[0], msg: rule.msg, warnOnly: !!rule.warnOnly });
+      }
+    }
+  });
+  return findings;
+}
+
 const SKIP_DIRS = new Set(["node_modules", "dist", "__snapshots__"]);
 const EXT = /\.(tsx|ts|css)$/;
 
@@ -54,39 +71,26 @@ function* walk(dir) {
   }
 }
 
-let errors = 0;
-let warnings = 0;
-for (const root of roots) {
-  for (const file of walk(root)) {
-    // tokens files legitimately contain hex and v4-only syntax
-    if (/src[\\/]tokens[\\/]/.test(file) || /manifest\.ts$/.test(file)) continue;
-    const text = readFileSync(file, "utf8");
-    const lines = text.split("\n");
-    lines.forEach((line, i) => {
-      if (/lint-classes-ignore/.test(line)) return;
-      // only inspect string literals and template literals, where classes live
-      const strings = line.match(/(["'`])(?:(?!\1)[^\\]|\\.)*\1/g);
-      if (!strings) return;
-      for (const s of strings) {
-        for (const rule of RULES) {
-          rule.re.lastIndex = 0;
-          const m = rule.re.exec(s);
-          if (m) {
-            const rel = relative(process.cwd(), file);
-            const level = rule.warnOnly ? "warn" : "error";
-            console.log(`${rel}:${i + 1}: ${level}: \`${m[0]}\` — ${rule.msg}`);
-            if (rule.warnOnly) warnings++;
-            else errors++;
-          }
-        }
+const isCli = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (isCli) {
+  const roots = process.argv.slice(2).length ? process.argv.slice(2) : ["src"];
+  let errors = 0;
+  let warnings = 0;
+  for (const root of roots) {
+    for (const file of walk(root)) {
+      // tokens files legitimately contain hex and v4-only syntax; the manifest is prose
+      if (/src[\\/]tokens[\\/]/.test(file) || /manifest\.ts$/.test(file)) continue;
+      for (const f of lintText(readFileSync(file, "utf8"), relative(process.cwd(), file))) {
+        console.log(`${f.file}:${f.line}: ${f.warnOnly ? "warn" : "error"}: \`${f.match}\` — ${f.msg}`);
+        if (f.warnOnly) warnings++;
+        else errors++;
       }
-    });
+    }
   }
-}
-
-if (errors) {
-  console.error(`\nlint-classes: ${errors} error(s), ${warnings} warning(s)`);
-  process.exit(1);
-} else {
-  console.log(`lint-classes: clean (${warnings} warning(s))`);
+  if (errors) {
+    console.error(`\nlint-classes: ${errors} error(s), ${warnings} warning(s)`);
+    process.exit(1);
+  } else {
+    console.log(`lint-classes: clean (${warnings} warning(s))`);
+  }
 }
