@@ -1,0 +1,155 @@
+/*
+  Tailwind v4 theme. Mirrors tailwind.preset.ts name-for-name so kit components compile the same
+  under v4 (Carbon) and v3 (platform, ERP, catalog).
+
+    // globals.css
+    @import "tailwindcss";
+    @import "../../packages/kit/src/tokens/tokens.css";
+    @import "../../packages/kit/src/tokens/theme.v4.css";
+    @import "../../packages/kit/src/tokens/base.css";
+    @source "../../packages/kit/src";
+*/
+@theme inline {
+  --font-sans: var(--ls-font-sans);
+  --font-display: var(--ls-font-display);
+  --font-mono: var(--ls-font-mono);
+
+  --color-surface: var(--ls-surface);
+  --color-surface-2: var(--ls-surface-2);
+  --color-surface-3: var(--ls-surface-3);
+  --color-surface-inverse: var(--ls-surface-inverse);
+  --color-line: var(--ls-line);
+  --color-line-strong: var(--ls-line-strong);
+  --color-fg: var(--ls-fg);
+  --color-fg-2: var(--ls-fg-2);
+  --color-fg-3: var(--ls-fg-3);
+  --color-fg-disabled: var(--ls-fg-disabled);
+  --color-fg-inverse: var(--ls-fg-inverse);
+  --color-accent: var(--ls-accent);
+  --color-accent-hover: var(--ls-accent-hover);
+  --color-accent-fg: var(--ls-accent-fg);
+  --color-accent-soft: var(--ls-accent-soft);
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-focus: var(--ls-focus);
+  --color-success: var(--ls-success);
+  --color-success-soft: var(--ls-success-soft);
+  --color-warn: var(--ls-warn);
+  --color-warn-soft: var(--ls-warn-soft);
+  --color-danger: var(--ls-danger);
+  --color-danger-soft: var(--ls-danger-soft);
+  --color-info: var(--ls-info);
+  --color-info-soft: var(--ls-info-soft);
+  --color-neutral-soft: var(--ls-neutral-soft);
+
+  --color-ink: var(--ls-ink);
+  --color-ink-2: var(--ls-ink-2);
+  --color-ink-3: var(--ls-ink-3);
+  --color-ink-4: var(--ls-ink-4);
+  --color-ink-5: var(--ls-ink-5);
+  --color-ink-6: var(--ls-ink-6);
+  --color-paper: var(--ls-paper);
+  --color-paper-2: var(--ls-paper-2);
+  --color-paper-3: var(--ls-paper-3);
+  --color-paper-4: var(--ls-paper-4);
+  --color-paper-5: var(--ls-paper-5);
+  --color-paper-6: var(--ls-paper-6);
+  --color-flame: var(--ls-flame);
+  --color-flame-2: var(--ls-flame-2);
+  --color-flame-3: var(--ls-flame-3);
+  --color-flame-4: var(--ls-flame-4);
+  --color-flame-5: var(--ls-flame-5);
+  --color-flame-6: var(--ls-flame-6);
+  --color-ember: var(--ls-ember);
+  --color-ember-deep: var(--ls-ember-deep);
+
+  --color-ls-success: var(--ls-success);
+  --color-ls-warn: var(--ls-warn);
+  --color-ls-danger: var(--ls-danger);
+  --color-ls-info: var(--ls-info);
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-bg: var(--ls-paper-2);
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-sm: var(--ls-radius-sm);
+  --radius-md: var(--ls-radius-md);
+  --radius-lg: var(--ls-radius-lg);
+  --radius-xl: var(--ls-radius-xl);
+
+  --shadow-ls-1: var(--ls-shadow-1);
+  --shadow-ls-2: var(--ls-shadow-2);
+  --shadow-ls-3: var(--ls-shadow-3);
+  --shadow-ls-flame: var(--ls-shadow-flame);
+
+  --tracking-ls-display: var(--ls-tracking-display);
+  --tracking-ls-tight: var(--ls-tracking-tight);
+  --tracking-ls-overline: 0.14em;
+
+  --spacing-control: var(--ls-control-md);
+  --spacing-control-sm: var(--ls-control-sm);
+  --spacing-control-lg: var(--ls-control-lg);
+  --spacing-sidebar: var(--ls-sidebar);
+  --spacing-rail: var(--ls-sidebar-rail);
+  --container-page: var(--ls-page-max);
+
+  --z-index-sticky: var(--ls-z-sticky);
+  --z-index-dropdown: var(--ls-z-dropdown);
+  --z-index-sheet: var(--ls-z-sheet);
+  --z-index-dialog: var(--ls-z-dialog);
+  --z-index-toast: var(--ls-z-toast);
+  --z-index-tooltip: var(--ls-z-tooltip);
+
+  --ease-ls-out: var(--ls-ease-out);
+  --ease-ls-inout: var(--ls-ease-inout);
+
+  --animate-ls-fade-in: ls-fade-in 320ms var(--ls-ease-out);
+  --animate-ls-fade-out: ls-fade-out 150ms var(--ls-ease-inout);
+  --animate-ls-scale-in: ls-scale-in 200ms var(--ls-ease-out);
+  --animate-ls-scale-out: ls-scale-out 150ms var(--ls-ease-inout);
+  --animate-ls-slide-in-right: ls-slide-in-right 320ms var(--ls-ease-out);
+  --animate-ls-slide-out-right: ls-slide-out-right 200ms var(--ls-ease-inout);
+  --animate-ls-slide-in-left: ls-slide-in-left 320ms var(--ls-ease-out);
+  --animate-ls-slide-out-left: ls-slide-out-left 200ms var(--ls-ease-inout);
+  --animate-ls-slide-in-up: ls-slide-in-up 200ms var(--ls-ease-out);
+  --animate-ls-shimmer: ls-shimmer 1.6s linear infinite;
+  --animate-ls-spin: ls-spin 0.8s linear infinite;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes ls-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes ls-fade-out { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes ls-scale-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+  @keyframes ls-scale-out { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.97); } }
+  @keyframes ls-slide-in-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  @keyframes ls-slide-out-right { from { transform: translateX(0); } to { transform: translateX(100%); } }
+  @keyframes ls-slide-in-left { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+  @keyframes ls-slide-out-left { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+  @keyframes ls-slide-in-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes ls-shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+  @keyframes ls-spin { to { transform: rotate(360deg); } }
+  @keyframes accordion-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
+  @keyframes accordion-up { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
+}
+
+/* Tailwind v4 defaults `rounded` family to its own scale; the kit forbids the un-themed sizes. */
+@theme {
+  --radius-xs: initial;
+  --radius-2xl: initial;
+  --radius-3xl: initial;
+  --radius-4xl: initial;
+}

@@ -1,0 +1,123 @@
+/*
+  LineSight design tokens — the single place values live.
+  Consumed by tailwind.preset.ts (Tailwind v3) and theme.v4.css (Tailwind v4).
+  Apps may override any --ls-* variable in their own CSS; components never read hex directly.
+*/
+:root {
+  /* ---- Brand primitives (Zyner brand, 2026) ---- */
+  --ls-ink: #1a1a1a;
+  --ls-ink-2: #383838;
+  --ls-ink-3: #555555;
+  --ls-ink-4: #737373;
+  --ls-ink-5: #828282;
+  --ls-ink-6: #909090;
+
+  --ls-paper: #fffcfa;
+  --ls-paper-2: #f7f2ea;
+  --ls-paper-3: #efe8dd;
+  --ls-paper-4: #e4dac9;
+  --ls-paper-5: #c2c2c2;
+  --ls-paper-6: #a3a3a3;
+
+  --ls-flame: #df6428;
+  --ls-flame-2: #ff7d3c;
+  --ls-flame-3: #ff9e64;
+  --ls-flame-4: #ffbe94;
+  --ls-flame-5: #ffceb0;
+  --ls-flame-6: #ffdfcc;
+
+  --ls-ember: #2b1109;
+  --ls-ember-deep: #120604;
+
+  --ls-success: #3f7a4b;
+  --ls-success-soft: #e5f0e7;
+  --ls-warn: #c77a1a;
+  --ls-warn-soft: #faeedb;
+  --ls-danger: #b3311f;
+  --ls-danger-soft: #f9e4e0;
+  --ls-info: #2f5b7a;
+  --ls-info-soft: #e2ebf1;
+
+  /* ---- Semantic: what components use ---- */
+  --ls-surface: var(--ls-paper);        /* page */
+  --ls-surface-2: var(--ls-paper-2);    /* sidebar, panels, table header */
+  --ls-surface-3: var(--ls-paper-3);    /* inset, hover, selected row */
+  --ls-surface-inverse: var(--ls-ink);  /* tooltips, primary button */
+  --ls-line: var(--ls-paper-4);
+  --ls-line-strong: var(--ls-paper-5);
+  --ls-fg: var(--ls-ink);
+  --ls-fg-2: var(--ls-ink-3);           /* secondary text */
+  --ls-fg-3: var(--ls-ink-4);           /* placeholder, meta — 4.7:1 on paper */
+  --ls-fg-disabled: var(--ls-ink-6);
+  --ls-fg-inverse: var(--ls-paper);
+  --ls-accent: var(--ls-flame);
+  --ls-accent-hover: #c9561f;
+  --ls-accent-fg: var(--ls-paper);
+  --ls-accent-soft: var(--ls-flame-6);
+  --ls-focus: var(--ls-flame);
+  --ls-neutral-soft: var(--ls-paper-3);
+
+  /* ---- Shape ---- */
+  --ls-radius-sm: 4px;
+  --ls-radius-md: 6px;
+  --ls-radius-lg: 10px;
+  --ls-radius-xl: 16px;
+
+  /* ---- Depth (always offset + blur; never a zero-offset halo) ---- */
+  --ls-shadow-1: 0 1px 0 rgba(26, 26, 26, 0.04), 0 1px 2px rgba(26, 26, 26, 0.06);
+  --ls-shadow-2: 0 2px 4px rgba(26, 26, 26, 0.05), 0 6px 16px rgba(26, 26, 26, 0.07);
+  --ls-shadow-3: 0 10px 24px rgba(26, 26, 26, 0.08), 0 24px 56px rgba(26, 26, 26, 0.1);
+  --ls-shadow-flame: 0 8px 24px rgba(223, 100, 40, 0.25);
+
+  /* ---- Type ---- */
+  --ls-font-sans: "Inter Tight", "Inter", system-ui, -apple-system, sans-serif;
+  --ls-font-display: "Lexend", "Inter Tight", system-ui, sans-serif;
+  --ls-font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  --ls-tracking-display: -0.02em;
+  --ls-tracking-tight: -0.01em;
+
+  /* ---- Motion ---- */
+  --ls-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ls-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ls-dur-1: 150ms;
+  --ls-dur-2: 200ms;
+  --ls-dur-3: 320ms;
+
+  /* ---- Sizes ---- */
+  --ls-control-sm: 2rem;      /* 32px */
+  --ls-control-md: 2.25rem;   /* 36px */
+  --ls-control-lg: 2.5rem;    /* 40px */
+  --ls-sidebar: 16.25rem;     /* 260px */
+  --ls-sidebar-rail: 4rem;    /* 64px */
+  --ls-page-max: 80rem;       /* 1280px */
+
+  /* ---- Layers ---- */
+  --ls-z-sticky: 10;
+  --ls-z-dropdown: 40;
+  --ls-z-sheet: 50;
+  --ls-z-dialog: 60;
+  --ls-z-toast: 70;
+  --ls-z-tooltip: 80;
+
+  /* ---- Legacy shadcn HSL triplets (platform compatibility: bg-background, border-border…) ---- */
+  --background: 26 100% 99%;
+  --foreground: 0 0% 10%;
+  --card: 26 100% 99%;
+  --card-foreground: 0 0% 10%;
+  --popover: 26 100% 99%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 0 0% 10%;
+  --primary-foreground: 26 100% 99%;
+  --secondary: 36 51% 94%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 36 51% 94%;
+  --muted-foreground: 0 0% 33%;
+  --accent: 19 72% 52%;
+  --accent-foreground: 26 100% 99%;
+  --destructive: 10 70% 41%;
+  --destructive-foreground: 26 100% 99%;
+  --border: 34 43% 84%;
+  --input: 34 43% 84%;
+  --ring: 19 72% 52%;
+  --radius: 0.375rem;
+}
