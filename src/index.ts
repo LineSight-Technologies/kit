@@ -5,3 +5,5 @@ export * from "./primitives/_batch-a1";
 export * from "./primitives/_batch-a2";
 export * from "./primitives/_batch-b";
 export * from "./patterns/_batch-c";
+export * from "./patterns/_batch-d";
+export * from "./lib/date";
