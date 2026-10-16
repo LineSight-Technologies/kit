@@ -87,7 +87,7 @@ Semantic (what components use; apps may use too):
 | `accent` / `accent-fg` / `accent-soft` | flame / paper / flame-6 | primary actions, selection, focus |
 | `success|warn|danger|info` + `-soft` | above | status only, never decoration |
 
-Radius `sm 4 / md 6 / lg 10 / xl 16 / full`. Shadows `ls-1/2/3` (offset + blur, never halos) and `ls-flame`.
+Radius `sm 4 / md 6 / lg 10 / xl 12 / full` (xl stays at Tailwind's default so existing `rounded-xl` uses do not move). Shadows `ls-1/2/3` (offset + blur, never halos) and `ls-flame`.
 Motion: `ease-ls-out cubic-bezier(.22,1,.36,1)`, `ease-ls-inout`; durations 150 / 200 / 320 ms; keyframes
 `ls-fade-in`, `ls-scale-in`, `ls-slide-in-right/left/up`, `ls-shimmer`. Type: fixed rem scale, ratio ~1.2,
 Inter Tight for all UI, Lexend only for page titles. Control heights `sm 32 / md 36 / lg 40`. Sidebar 260 / rail

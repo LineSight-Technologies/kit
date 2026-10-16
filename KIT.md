@@ -89,7 +89,7 @@ commit, so a local-only edit cannot ship.
 | Text / secondary / meta | `text-fg` / `text-fg-2` / `text-fg-3` |
 | Primary action, selection, focus | `bg-accent text-accent-fg`, `bg-accent-soft`, `ring-focus` |
 | Status | `text-success|warn|danger|info`, `bg-*-soft` (use `Badge`/`StatusBadge` instead where possible) |
-| Radius | `rounded-sm` 4 · `rounded-md` 6 (controls) · `rounded-lg` 10 (cards, menus) · `rounded-xl` 16 (dialogs, sheets) |
+| Radius | `rounded-sm` 4 · `rounded-md` 6 (controls) · `rounded-lg` 10 (cards, menus) · `rounded-xl` 12 (dialogs, sheets) |
 | Shadow | `shadow-ls-1` resting · `shadow-ls-2` popovers · `shadow-ls-3` dialogs |
 | Control heights | `h-control-sm` 32 · `h-control` 36 · `h-control-lg` 40 |
 | Motion | `animate-ls-fade-in|scale-in|slide-in-right|slide-in-up`, `duration-150|200|300`, `ease-ls-out` |
