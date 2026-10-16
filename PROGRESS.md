@@ -22,15 +22,12 @@ Spec: docs/superpowers/specs/2026-10-16-design-kit-design.md. Conventions: docs/
 ## State
 - [x] Recon (3 agents) — findings folded into spec
 - [x] Repo scaffold + tokens (tokens.css, preset v3, theme v4, base.css) + tone map + manifest + class lint — committed
-- [ ] Batch A1 core primitives — agent running (barrels _batch-a1.ts / entries.batch-a1.ts)
-- [ ] Batch A2 form primitives — agent running (_batch-a2 / entries.batch-a2)
-- [ ] Batch B overlays — agent running (_batch-b / entries.batch-b)
-- [ ] Batch E catalog renderer + foundations + gen-kit-md + visual tests — agent running
-- [ ] Batch C patterns: app-shell, page, toolbar, empty-state, stat — AFTER A1/A2/B
-- [ ] Batch D patterns: data-table, detail-panel, form, list, entity-card — AFTER A1/A2/B
+- [x] Batches A1, A2, B (27 primitives, 240 tests) + E (catalog renderer, foundations, gen-kit-md, visual harness) — committed, pushed; barrels wired into src/index.ts + entries.ts
+- [ ] Batch C patterns (app-shell, page, toolbar, empty-state, stat) — agent running (_batch-c / entries.batch-c)
+- [ ] Batch D patterns (data-table, detail-panel, form, list, entity-card) — agent running (_batch-d / entries.batch-d)
 - [x] KIT.md prose, skill, sync.mjs, CI workflow — committed
 - [x] GitHub repo created PUBLIC https://github.com/LineSight-Technologies/kit, pushed (main)
-- [ ] LineSight integration agent running in worktree ~/Desktop/LineSight-design-kit (branch feat/design-kit): vendor, alias, preset, deps, scripts/kit_guard.mjs, CI steps, CLAUDE.md section; commits only, no push
+- [x] LineSight integration DONE in worktree ~/Desktop/LineSight-design-kit (feat/design-kit, 3 commits, not pushed): vendored packages/kit @93ad76b (STALE — re-vendor via `node packages/kit/scripts/sync.mjs pull` at the end), platform/ERP/catalog wired, deps bumped (lucide 0.546, ERP tailwind-merge 3), scripts/kit_guard.mjs, CI steps, CLAUDE.md section. All checks green under Node 22 (nvm; Vite 8 needs ≥20.19). TODO at re-vendor: apps/catalog index.css should import tokens.css.
 - [ ] Merge barrels into src/index.ts + entries.ts; regenerate snapshots; full `npm run check`
 - [ ] CI green on kit repo (needs linux snapshots via `npm run test:visual:update` in docker)
 - [ ] LineSight integration PR
@@ -49,7 +46,8 @@ Spec: docs/superpowers/specs/2026-10-16-design-kit-design.md. Conventions: docs/
 - Platform lint runs with --max-warnings 10, so no ESLint warnings for legacy violations. Instead
   scripts/kit_guard.mjs runs on the PR diff: NEW files must comply (error), modified files warn.
 - tokens.css carries RGB triplets so Tailwind v3 opacity modifiers (798 uses in platform/ERP) keep working.
-- ERP overrides --ls-ink/--ls-paper to its warm values in its index.css for now (convergence is the goal).
+- ERP ink/paper hex on dev are IDENTICAL to the kit's canonical values (recon's 'warm-shifted' claim was stale); the override block in erp/src/index.css is a documented no-op template.
+- radius-xl kept at 12px (Tailwind default) so the 126 existing rounded-xl uses do not move.
 
 ## Files (kit repo) — all mine unless noted
 package.json, tsconfig.json, eslint.config.js, vitest.config.ts, playwright.config.ts, tests/setup.ts,
