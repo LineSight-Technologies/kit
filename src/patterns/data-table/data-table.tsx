@@ -535,7 +535,7 @@ function DataTableInner<T>(
                           meta.numeric && "flex-row-reverse",
                         )}
                       >
-                        <span className="truncate">{label}</span>
+                        <span className="whitespace-nowrap">{label}</span>
                         {sorted === "asc" ? (
                           <ArrowUp aria-hidden="true" className="size-3.5 shrink-0" />
                         ) : sorted === "desc" ? (
