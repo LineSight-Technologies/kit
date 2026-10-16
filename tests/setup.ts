@@ -4,8 +4,7 @@ import "@testing-library/jest-dom/vitest";
 if (!Element.prototype.scrollIntoView) Element.prototype.scrollIntoView = () => {};
 if (!window.ResizeObserver) {
   class RO { observe() {} unobserve() {} disconnect() {} }
-  // @ts-expect-error test polyfill
-  window.ResizeObserver = RO;
+  window.ResizeObserver = RO as unknown as typeof ResizeObserver;
 }
 if (!Element.prototype.hasPointerCapture) Element.prototype.hasPointerCapture = () => false;
 if (!Element.prototype.releasePointerCapture) Element.prototype.releasePointerCapture = () => {};

@@ -34,7 +34,7 @@ export const MANIFEST: readonly KitMeta[] = [
   { id: "tabs", name: "Tabs", group: "Primitives", summary: "Underline tabs (page level) and pill tabs (inside panels), with counts.", when: "Sections of one record or one page. Not for navigation between pages." },
   { id: "separator", name: "Separator", group: "Primitives", summary: "Hairline, horizontal or vertical, optional centred label.", when: "Between groups in menus and toolbars. Use gap or a PageSection before reaching for it." },
   { id: "skeleton", name: "Skeleton", group: "Primitives", summary: "Shimmering placeholder blocks and prebuilt shapes (text lines, row, tile).", when: "Any loading state that lasts longer than ~300ms. Match the shape of the content that will appear." },
-  { id: "spinner", name: "Spinner", group: "Primitives", summary: "Indeterminate activity ring, sm/md/lg.", when: "Inside buttons and inline. Loading content areas use Skeleton." },
+  { id: "spinner", name: "Spinner", group: "Primitives", summary: "Indeterminate activity indicator, sm/md/lg.", when: "Inside buttons and inline. Loading content areas use Skeleton." },
   { id: "kbd", name: "Kbd", group: "Primitives", summary: "Keyboard shortcut chip.", when: "Menus, tooltips, the command menu." },
   { id: "toast", name: "Toast", group: "Primitives", summary: "Transient notifications (sonner) with success/error/loading and an action.", when: "Confirm an action completed or failed. Never for errors the user must act on in place." },
   { id: "command-menu", name: "CommandMenu", group: "Primitives", summary: "⌘K palette with groups, async items, shortcuts and recent items.", when: "App-wide navigation and actions. One per app, mounted in the shell." },

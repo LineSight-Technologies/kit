@@ -1,5 +1,3 @@
-import type { Config } from "tailwindcss";
-
 /**
  * Tailwind v3 preset. Every name here also exists in theme.v4.css, so kit components compile
  * identically under v3 (platform, ERP, catalog) and v4 (Carbon).
@@ -139,11 +137,12 @@ export const kitTheme = {
   backgroundSize: { "waste-size": "6px 6px" },
 } as const;
 
+// Typed loosely on purpose: this file is consumed by Tailwind v3 but typechecked here against v4's types.
 const preset = {
-  darkMode: ["class"],
-  content: [],
+  darkMode: "class",
+  content: [] as string[],
   theme: { extend: kitTheme },
-  plugins: [],
-} satisfies Config;
+  plugins: [] as unknown[],
+};
 
 export default preset;

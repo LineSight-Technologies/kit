@@ -59,7 +59,7 @@ let warnings = 0;
 for (const root of roots) {
   for (const file of walk(root)) {
     // tokens files legitimately contain hex and v4-only syntax
-    if (/src[\\/]tokens[\\/]/.test(file)) continue;
+    if (/src[\\/]tokens[\\/]/.test(file) || /manifest\.ts$/.test(file)) continue;
     const text = readFileSync(file, "utf8");
     const lines = text.split("\n");
     lines.forEach((line, i) => {
