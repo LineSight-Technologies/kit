@@ -62,7 +62,7 @@ export interface AvatarProps
   src?: string;
   /** Defaults to `name`. */
   alt?: string;
-  /** Delay before the initials show while the image loads, in ms. Defaults to 300 when `src` is set, 0 otherwise. */
+  /** Delay before the initials show while the image loads, in ms. Defaults to 300 when `src` is set; without `src` the fallback renders at once. */
   delayMs?: number;
 }
 
@@ -87,7 +87,7 @@ export const Avatar = React.forwardRef<React.ComponentRef<typeof AvatarPrimitive
       >
         {src ? <AvatarPrimitive.Image src={src} alt={alt ?? name ?? ""} className="size-full object-cover" /> : null}
         <AvatarPrimitive.Fallback
-          delayMs={delayMs ?? (src ? 300 : 0)}
+          delayMs={delayMs ?? (src ? 300 : undefined)}
           className={cn("flex size-full items-center justify-center", tone)}
           aria-label={src ? undefined : (alt ?? name)}
         >

@@ -23,7 +23,7 @@
     "lint": "eslint . && node scripts/lint-classes.mjs",
     "test": "vitest run",
     "test:visual": "playwright test",
-    "docs": "node scripts/gen-kit-md.mjs",
+    "docs": "tsx scripts/gen-kit-md.ts",
     "check": "npm run typecheck && npm run lint && npm run test && npm run docs -- --check",
     "test:visual:docker": "docker run --rm -v \"$PWD\":/work -v linesight-kit-nm:/work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.56.0-noble sh -c \"npm ci --no-audit --no-fund >/dev/null && npx playwright test $*\"",
     "test:visual:update": "docker run --rm -v \"$PWD\":/work -v linesight-kit-nm:/work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.56.0-noble sh -c \"npm ci --no-audit --no-fund >/dev/null && npx playwright test --update-snapshots\""

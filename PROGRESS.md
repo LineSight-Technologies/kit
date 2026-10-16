@@ -28,9 +28,11 @@ Spec: docs/superpowers/specs/2026-10-16-design-kit-design.md. Conventions: docs/
 - [ ] Batch E catalog renderer + foundations + gen-kit-md + visual tests — agent running
 - [ ] Batch C patterns: app-shell, page, toolbar, empty-state, stat — AFTER A1/A2/B
 - [ ] Batch D patterns: data-table, detail-panel, form, list, entity-card — AFTER A1/A2/B
-- [ ] KIT.md prose, skill, sync.mjs, CI workflow — me, now
+- [x] KIT.md prose, skill, sync.mjs, CI workflow — committed
+- [x] GitHub repo created PUBLIC https://github.com/LineSight-Technologies/kit, pushed (main)
+- [ ] LineSight integration agent running in worktree ~/Desktop/LineSight-design-kit (branch feat/design-kit): vendor, alias, preset, deps, scripts/kit_guard.mjs, CI steps, CLAUDE.md section; commits only, no push
 - [ ] Merge barrels into src/index.ts + entries.ts; regenerate snapshots; full `npm run check`
-- [ ] Create GitHub repo LineSight-Technologies/kit (private), push, CI green
+- [ ] CI green on kit repo (needs linux snapshots via `npm run test:visual:update` in docker)
 - [ ] LineSight integration PR
 - [ ] Carbon integration
 - [ ] Memory + Notion → PR
@@ -42,6 +44,12 @@ Spec: docs/superpowers/specs/2026-10-16-design-kit-design.md. Conventions: docs/
 - Tailwind v3/v4 compatible class subset enforced by scripts/lint-classes.mjs.
 - No Storybook; in-house Catalog component rendered by playground and by Carbon /design.
 - Legacy components/ui folders frozen, not migrated; new work uses the kit.
+- Kit repo is PUBLIC (my call): a UI library with public brand colours; private would need a token in
+  every Vercel build, GitHub Action (cross-repo GITHUB_TOKEN can't read) and laptop. Reversible.
+- Platform lint runs with --max-warnings 10, so no ESLint warnings for legacy violations. Instead
+  scripts/kit_guard.mjs runs on the PR diff: NEW files must comply (error), modified files warn.
+- tokens.css carries RGB triplets so Tailwind v3 opacity modifiers (798 uses in platform/ERP) keep working.
+- ERP overrides --ls-ink/--ls-paper to its warm values in its index.css for now (convergence is the goal).
 
 ## Files (kit repo) — all mine unless noted
 package.json, tsconfig.json, eslint.config.js, vitest.config.ts, playwright.config.ts, tests/setup.ts,

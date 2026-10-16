@@ -28,6 +28,7 @@ describe("Button", () => {
     const btn = screen.getByRole("button");
     expect(btn).toHaveClass("h-auto", "px-0");
     expect(btn).not.toHaveClass("h-control");
+    expect(btn).not.toHaveClass("px-3.5");
   });
 
   it.each([

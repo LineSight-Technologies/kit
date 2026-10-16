@@ -18,6 +18,8 @@ export const buttonToneClassNames = {
   danger: "bg-danger text-fg-inverse hover:opacity-90",
 } as const;
 
+const solidVariantNames = Object.keys(buttonToneClassNames) as (keyof typeof buttonToneClassNames)[];
+
 export const buttonVariants = cva(cn(buttonBaseClassName, "gap-2"), {
   variants: {
     variant: {
@@ -25,15 +27,21 @@ export const buttonVariants = cva(cn(buttonBaseClassName, "gap-2"), {
       link: "text-accent underline-offset-4 hover:underline active:translate-y-0",
     },
     size: {
-      sm: "h-control-sm px-3 text-sm",
-      md: "h-control px-3.5",
-      lg: "h-control-lg px-4 text-base",
+      sm: "px-3 text-sm",
+      md: "px-3.5",
+      lg: "px-4 text-base",
     },
     fullWidth: {
       true: "w-full",
     },
   },
-  compoundVariants: [{ variant: "link", size: ["sm", "md", "lg"], className: "h-auto px-0" }],
+  // Heights live here, not on `size`, so `link` never carries one (it sits inline with text).
+  compoundVariants: [
+    { variant: solidVariantNames, size: "sm", className: "h-control-sm" },
+    { variant: solidVariantNames, size: "md", className: "h-control" },
+    { variant: solidVariantNames, size: "lg", className: "h-control-lg" },
+    { variant: "link", className: "h-auto px-0" },
+  ],
   defaultVariants: { variant: "primary", size: "md" },
 });
 
