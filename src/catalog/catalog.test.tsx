@@ -1,5 +1,7 @@
 import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+vi.mock("./entries", () => ({ ENTRIES: [] }));
+
 import { Catalog, parseHash } from "./Catalog";
 import { MANIFEST } from "./manifest";
 import type { KitEntry } from "./types";
