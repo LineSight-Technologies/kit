@@ -23,16 +23,15 @@ Spec: docs/superpowers/specs/2026-10-16-design-kit-design.md. Conventions: docs/
 - [x] Recon (3 agents) — findings folded into spec
 - [x] Repo scaffold + tokens (tokens.css, preset v3, theme v4, base.css) + tone map + manifest + class lint — committed
 - [x] Batches A1, A2, B (27 primitives, 240 tests) + E (catalog renderer, foundations, gen-kit-md, visual harness) — committed, pushed; barrels wired into src/index.ts + entries.ts
-- [ ] Batch C patterns (app-shell, page, toolbar, empty-state, stat) — agent running (_batch-c / entries.batch-c)
-- [ ] Batch D patterns (data-table, detail-panel, form, list, entity-card) — agent running (_batch-d / entries.batch-d)
+- [x] Batches C + D patterns — committed; 45/45 manifest entries built; 327 unit tests
 - [x] KIT.md prose, skill, sync.mjs, CI workflow — committed
 - [x] GitHub repo created PUBLIC https://github.com/LineSight-Technologies/kit, pushed (main)
 - [x] LineSight integration DONE in worktree ~/Desktop/LineSight-design-kit (feat/design-kit, 3 commits, not pushed): vendored packages/kit @93ad76b (STALE — re-vendor via `node packages/kit/scripts/sync.mjs pull` at the end), platform/ERP/catalog wired, deps bumped (lucide 0.546, ERP tailwind-merge 3), scripts/kit_guard.mjs, CI steps, CLAUDE.md section. All checks green under Node 22 (nvm; Vite 8 needs ≥20.19). TODO at re-vendor: apps/catalog index.css should import tokens.css.
-- [ ] Merge barrels into src/index.ts + entries.ts; regenerate snapshots; full `npm run check`
-- [ ] CI green on kit repo (needs linux snapshots via `npm run test:visual:update` in docker)
-- [ ] LineSight integration PR
-- [ ] Carbon integration
-- [ ] Memory + Notion → PR
+- [x] Barrels wired; Linux snapshots (43) generated in Docker (Playwright pinned 1.64.1 = image); `npm run check` green
+- [x] Kit CI green at 27ecf0f
+- [x] LineSight PR #1157 open against dev (NOT merged — Bilal's call): https://github.com/LineSight-Technologies/LineSight/pull/1157
+- [x] Carbon: vendored @27ecf0f, AppShell shell + AppNav, /design catalog route, ui.tsx bridge, CLAUDE.md; typecheck/lint/test/build green; 5 commits on local main (Carbon has no remote yet)
+- [x] Memory project_design_kit.md + index; Notion ticket → PR (Fix PR 1157)
 
 ## Decisions
 - Own repo + source vendoring via sync script (no npm registry: no npm login; private registry = token in
@@ -54,3 +53,8 @@ package.json, tsconfig.json, eslint.config.js, vitest.config.ts, playwright.conf
 playground/{index.html,main.tsx,styles.css,vite.config.ts,public/fonts}, src/tokens/*, src/lib/{cn,tone}.ts,
 src/catalog/{types,manifest,entries,index}.ts, src/catalog/Catalog.tsx (placeholder → batch E),
 scripts/lint-classes.mjs, docs/CONVENTIONS.md, docs/superpowers/specs/…design.md
+
+## Done 2026-10-16 — follow-ups (not started)
+- Migrate screens one at a time onto the kit (start with the pages that get touched next).
+- Carbon: push to GitHub + Vercel (Carbon session owns this); the /design route is behind Google sign-in.
+- Consider `sync.mjs check --strict` once teams are used to pulling.
