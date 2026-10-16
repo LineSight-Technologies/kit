@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createRef, useState } from "react";
 import { Field } from "../field/field";
@@ -112,30 +112,24 @@ describe("Combobox", () => {
     expect(onCreate).toHaveBeenCalledWith("Delta Tube");
   });
 
-  it("onSearch is debounced", async () => {
-    vi.useFakeTimers();
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+  it("onSearch fires with \"\" on open and is debounced while typing", async () => {
+    const user = userEvent.setup();
     const onSearch = vi.fn();
     render(<Single onSearch={onSearch} />);
     await user.click(screen.getByRole("combobox"));
-    await act(async () => {
-      vi.advanceTimersByTime(0);
-    });
-    expect(onSearch).toHaveBeenCalledWith("");
+    await waitFor(() => expect(onSearch).toHaveBeenCalledWith(""));
     await user.type(screen.getByPlaceholderText("Search…"), "ap");
     expect(onSearch).toHaveBeenCalledTimes(1);
-    await act(async () => {
-      vi.advanceTimersByTime(250);
-    });
-    expect(onSearch).toHaveBeenLastCalledWith("ap");
-    vi.useRealTimers();
+    await waitFor(() => expect(onSearch).toHaveBeenLastCalledWith("ap"));
+    expect(onSearch).not.toHaveBeenCalledWith("a");
+    expect(onSearch).toHaveBeenCalledTimes(2);
   });
 
   it("loading shows a spinner instead of options", async () => {
     const user = userEvent.setup();
     render(<Single loading />);
     await user.click(screen.getByRole("combobox"));
-    expect(await screen.findByLabelText("Loading")).toBeInTheDocument();
+    expect(await screen.findByRole("status", { name: "Loading" })).toBeInTheDocument();
     expect(screen.queryAllByRole("option")).toHaveLength(0);
   });
 

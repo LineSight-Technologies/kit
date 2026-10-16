@@ -12,6 +12,7 @@ import {
   type ComponentPropsWithoutRef,
   type ElementRef,
   type HTMLAttributes,
+  type MouseEvent,
   type ReactElement,
   type ReactNode,
 } from "react";
@@ -24,6 +25,8 @@ import { cn } from "../../lib/cn";
 export interface FieldContextValue {
   /** id the control must use so the label's `htmlFor` resolves. */
   id: string;
+  /** id of the Field's label, when it has one — for controls `<label for>` cannot name (div-based). */
+  labelId?: string;
   /** id of the error element, present only while `error` is set. */
   errorId?: string;
   invalid: boolean;
@@ -41,6 +44,8 @@ export interface FieldControlAria {
   id?: string;
   "aria-invalid"?: boolean | "true" | "false" | "grammar" | "spelling";
   "aria-describedby"?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
   required?: boolean;
 }
 
@@ -56,7 +61,15 @@ export function useFieldControl<T extends FieldControlAria>(props: T) {
   const describedBy =
     [props["aria-describedby"], field?.errorId].filter(Boolean).join(" ") || undefined;
   const required = props.required ?? (field?.required || undefined);
-  return { id, "aria-invalid": invalid, "aria-describedby": describedBy, required } as const;
+  const labelledBy =
+    props["aria-labelledby"] ?? (props["aria-label"] == null && field?.labelId ? field.labelId : undefined);
+  return {
+    id,
+    "aria-invalid": invalid,
+    "aria-describedby": describedBy,
+    "aria-labelledby": labelledBy,
+    required,
+  } as const;
 }
 
 /* ------------------------------------------------------------------ */
@@ -133,12 +146,20 @@ export interface FieldProps extends Omit<HTMLAttributes<HTMLDivElement>, "childr
 }
 
 const INTRINSIC_CONTROLS = new Set(["input", "select", "textarea", "button"]);
+const LABELABLE = /^(INPUT|SELECT|TEXTAREA|BUTTON|METER|OUTPUT)$/;
+
+/** `<label for>` only focuses labelable elements; a div-based control (Combobox) needs a hand. */
+function focusNonLabelable(e: MouseEvent<HTMLLabelElement>) {
+  const target = e.currentTarget.htmlFor ? document.getElementById(e.currentTarget.htmlFor) : null;
+  if (target && !LABELABLE.test(target.tagName)) target.focus();
+}
 
 export const Field = forwardRef<HTMLDivElement, FieldProps>(
   ({ label, htmlFor, error, required = false, orientation = "vertical", className, children, ...props }, ref) => {
     const generated = useId();
     const id = htmlFor ?? generated;
     const errorId = error ? `${id}-error` : undefined;
+    const labelId = label != null ? `${id}-label` : undefined;
     const invalid = Boolean(error);
     const horizontal = orientation === "horizontal";
 
@@ -156,7 +177,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     }
 
     return (
-      <FieldContext.Provider value={{ id, errorId, invalid, required }}>
+      <FieldContext.Provider value={{ id, labelId, errorId, invalid, required }}>
         <div
           ref={ref}
           data-orientation={orientation}
@@ -168,7 +189,13 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           {...props}
         >
           {label != null && (
-            <Label htmlFor={id} required={required} className={cn(horizontal && "min-h-control py-2")}>
+            <Label
+              id={labelId}
+              htmlFor={id}
+              required={required}
+              onClick={focusNonLabelable}
+              className={cn(horizontal && "min-h-control py-2")}
+            >
               {label}
             </Label>
           )}

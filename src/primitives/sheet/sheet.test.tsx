@@ -32,7 +32,7 @@ describe("Sheet", () => {
   });
 
   it("defaults to right / md and applies side + size variants", () => {
-    const { unmount } = render(
+    const first = render(
       <Sheet defaultOpen>
         <SheetContent data-testid="c">
           <SheetHeader title="T" />
@@ -41,8 +41,8 @@ describe("Sheet", () => {
     );
     let el = screen.getByTestId("c");
     expect(el).toHaveClass("right-0", "border-l", "sm:w-[520px]", "z-sheet", "shadow-ls-3", "flex-col");
-    unmount();
-    render(
+    first.unmount();
+    const second = render(
       <Sheet defaultOpen>
         <SheetContent side="left" size="xl" data-testid="c">
           <SheetHeader title="T" />
@@ -51,7 +51,7 @@ describe("Sheet", () => {
     );
     el = screen.getByTestId("c");
     expect(el).toHaveClass("left-0", "border-r", "sm:w-[960px]", "data-[state=open]:animate-ls-slide-in-left");
-    unmount();
+    second.unmount();
     render(
       <Sheet defaultOpen>
         <SheetContent side="bottom" data-testid="c">

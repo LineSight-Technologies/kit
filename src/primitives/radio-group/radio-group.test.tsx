@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createRef } from "react";
 import { RadioCard, RadioCards, RadioGroup, RadioGroupItem } from "./radio-group";
@@ -30,8 +30,10 @@ describe("RadioGroup", () => {
       </RadioGroup>,
     );
     screen.getByRole("radio", { name: "A" }).focus();
-    await user.keyboard("{ArrowDown}");
-    expect(screen.getByRole("radio", { name: "B" })).toHaveAttribute("data-state", "checked");
+    // Radix moves focus in a setTimeout and selects on focus only while the arrow key is still down.
+    await user.keyboard("{ArrowDown>}");
+    await waitFor(() => expect(screen.getByRole("radio", { name: "B" })).toHaveAttribute("data-state", "checked"));
+    await user.keyboard("{/ArrowDown}");
   });
 
   it("horizontal orientation, disabled item, className, ref", () => {

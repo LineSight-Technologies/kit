@@ -101,7 +101,6 @@ export const kitTheme = {
     tooltip: v("z-tooltip"),
   },
   transitionTimingFunction: { "ls-out": v("ease-out"), "ls-inout": v("ease-inout") },
-  transitionDuration: { 1: "150ms", 2: "200ms", 3: "320ms" },
   keyframes: {
     "ls-fade-in": { from: { opacity: "0", transform: "translateY(4px)" }, to: { opacity: "1", transform: "translateY(0)" } },
     "ls-fade-out": { from: { opacity: "1" }, to: { opacity: "0" } },

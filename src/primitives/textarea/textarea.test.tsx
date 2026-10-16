@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createRef } from "react";
 import { Textarea } from "./textarea";
@@ -17,11 +17,18 @@ describe("Textarea", () => {
     expect(screen.getByLabelText("n")).toHaveClass("resize-y");
   });
 
-  it("sets an explicit height between min and max rows", () => {
+  // jsdom has no Tailwind CSS, so the fit reads the UA defaults (2px padding, 1px border) and the
+  // 20px line fallback. Rows in px = rows * 20 + vertical padding + vertical border.
+  const rowsPx = (el: HTMLElement, rows: number) => {
+    const cs = window.getComputedStyle(el);
+    const n = (v: string) => parseFloat(v) || 0;
+    return rows * 20 + n(cs.paddingTop) + n(cs.paddingBottom) + n(cs.borderTopWidth) + n(cs.borderBottomWidth);
+  };
+
+  it("sets an explicit height at the minRows floor when empty", () => {
     render(<Textarea aria-label="n" minRows={2} maxRows={4} />);
     const el = screen.getByLabelText("n") as HTMLTextAreaElement;
-    // jsdom reports 0 scrollHeight, so the floor applies: 2 rows * 20px + 16px padding + 2px border.
-    expect(el.style.height).toBe("58px");
+    expect(el.style.height).toBe(`${rowsPx(el, 2)}px`);
     expect(el.style.overflowY).toBe("hidden");
   });
 
@@ -29,11 +36,8 @@ describe("Textarea", () => {
     render(<Textarea aria-label="n" minRows={1} maxRows={2} />);
     const el = screen.getByLabelText("n") as HTMLTextAreaElement;
     Object.defineProperty(el, "scrollHeight", { configurable: true, value: 400 });
-    el.focus();
-    // Trigger the fit via a change.
-    el.value = "a";
-    el.dispatchEvent(new Event("input", { bubbles: true }));
-    expect(el.style.height).toBe("58px");
+    fireEvent.change(el, { target: { value: "a long note" } });
+    expect(el.style.height).toBe(`${rowsPx(el, 2)}px`);
     expect(el.style.overflowY).toBe("auto");
   });
 

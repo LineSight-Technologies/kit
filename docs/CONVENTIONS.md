@@ -28,15 +28,16 @@ export const entries = [buttonEntry];
 - Tailwind classes only, from the compatible subset — run `node scripts/lint-classes.mjs` and keep it clean.
   Colours: `bg-surface|surface-2|surface-3|surface-inverse`, `border-line|line-strong`, `text-fg|fg-2|fg-3|fg-disabled|fg-inverse`,
   `bg-accent|accent-hover|accent-soft text-accent-fg`, tones via `src/lib/tone.ts`. Radius `rounded-sm|md|lg|xl|full`.
-  Shadows `shadow-ls-1|2|3`. Motion `animate-ls-*`, `duration-1|2|3`, `ease-ls-out|inout`. Heights `h-control-sm|control|control-lg`.
+  Shadows `shadow-ls-1|2|3`. Motion `animate-ls-*`, `duration-150|200|300` (v4 has no duration theme, so numeric only), `ease-ls-out|inout`. Heights `h-control-sm|control|control-lg`.
   Z `z-dropdown|sheet|dialog|toast|tooltip`. Never stock hues, never hex, never `white`/`black`.
 - Focus: `outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-surface`.
 - Disabled: `disabled:pointer-events-none disabled:opacity-50` (or `data-[disabled]:` for Radix).
 - Invalid: `aria-invalid:border-danger aria-invalid:focus-visible:ring-danger`.
-- Transitions: `transition-colors duration-1` on interactive surfaces; entrances `animate-ls-scale-in` /
+- Transitions: `transition-colors duration-150` on interactive surfaces; entrances `animate-ls-scale-in` /
   `animate-ls-slide-in-right`; exits with the matching `-out`. Radix: `data-[state=open]:animate-ls-scale-in data-[state=closed]:animate-ls-scale-out`.
 - `className` is merged **last** with `cn()` from `src/lib/cn.ts`. Export `xxxVariants` (cva) and `XxxProps`.
 - Icons: `lucide-react`, `size-4` in controls, `size-5` in empty states, `strokeWidth` left at default.
+- The class lint scans every string literal, including prose in entries. Avoid the bare words "ring", "shadow", "rounded", "container", "blur" in example titles and code comments inside strings.
 - Type: UI text is `text-sm`; small meta `text-xs text-fg-3`; page titles are the only `font-display`.
 - No eyebrows, subtitles, helper text, footers, hint lines, counts-as-decoration, progress bars. A component
   exposes `title`, `actions`, `children` — not `subtitle`, `description` (exception: `Field` has `error` only,

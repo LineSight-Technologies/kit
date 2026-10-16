@@ -2,6 +2,9 @@ import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Toaster, notify, toast } from "./toast";
 
+// sonner's swipe handling calls pointer capture, which jsdom does not implement.
+if (!Element.prototype.setPointerCapture) Element.prototype.setPointerCapture = () => {};
+
 describe("Toast", () => {
   it("renders a region and shows a success toast with kit chrome", async () => {
     render(<Toaster />);

@@ -275,15 +275,14 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>((props, ref) =
             </div>
             <CommandPrimitive.List className="max-h-72 overflow-auto p-1">
               {loading && (
-                <CommandPrimitive.Loading>
-                  <div className="flex items-center justify-center py-6" aria-label="Loading">
-                    {/* TODO(spinner): swap for <Spinner size="sm" /> once src/primitives/spinner lands */}
-                    <svg className="size-4 animate-ls-spin text-fg-3" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.25" strokeWidth="2.5" />
-                      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                </CommandPrimitive.Loading>
+                // Not cmdk's Loading: it renders role="progressbar", which LineSight bans.
+                <div role="status" aria-label="Loading" className="flex items-center justify-center py-6">
+                  {/* TODO(spinner): swap for <Spinner size="sm" /> once src/primitives/spinner lands */}
+                  <svg className="size-4 animate-ls-spin text-fg-3" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.25" strokeWidth="2.5" />
+                    <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                  </svg>
+                </div>
               )}
               {!loading && !showCreate && (
                 <CommandPrimitive.Empty className="py-6 text-center text-sm text-fg-3">{emptyText}</CommandPrimitive.Empty>

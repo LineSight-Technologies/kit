@@ -92,7 +92,7 @@ commit, so a local-only edit cannot ship.
 | Radius | `rounded-sm` 4 · `rounded-md` 6 (controls) · `rounded-lg` 10 (cards, menus) · `rounded-xl` 16 (dialogs, sheets) |
 | Shadow | `shadow-ls-1` resting · `shadow-ls-2` popovers · `shadow-ls-3` dialogs |
 | Control heights | `h-control-sm` 32 · `h-control` 36 · `h-control-lg` 40 |
-| Motion | `animate-ls-fade-in|scale-in|slide-in-right|slide-in-up`, `duration-1|2|3`, `ease-ls-out` |
+| Motion | `animate-ls-fade-in|scale-in|slide-in-right|slide-in-up`, `duration-150|200|300`, `ease-ls-out` |
 | Layers | `z-sticky` · `z-dropdown` · `z-sheet` · `z-dialog` · `z-toast` · `z-tooltip` |
 
 Raw values live in `src/tokens/tokens.css`. Tailwind v3 apps use `src/tokens/tailwind.preset.ts`; Tailwind v4

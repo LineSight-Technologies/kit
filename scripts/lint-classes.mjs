@@ -32,6 +32,7 @@ export const RULES = [
   { re: /(?<![\w-])(?:fade|zoom|slide)-(?:in|out)-/g, msg: "tailwindcss-animate classes — use animate-ls-*" },
   { re: /(?<![\w-])(?:bg|text|border|ring|from|to|via|fill|stroke|outline|decoration|accent|caret|shadow)-(?:surface|line|fg|accent|focus|success|warn|danger|info|neutral|ink|paper|flame|ember)(?:-[\w]+)?\/\d+/g, msg: "prefer the -soft tint over an opacity modifier on a token colour", warnOnly: true },
   { re: /(?<![\w-])(?:sm|md|lg|xl|2xl):hover:/g, msg: "responsive+hover stacking reads differently in v4 — split the classes" },
+  { re: /(?<![\w-])duration-[123](?![\w-])/g, msg: "duration-1|2|3 only exist in the v3 preset — use duration-150|200|300" },
   // design rules
   { re: /(?<![\w-])(?:bg|text|border|ring|from|to|via|fill|stroke|outline|decoration|divide|placeholder|shadow)-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d{2,3}(?![\w-])/g, msg: "stock Tailwind hue — use a semantic token (surface/line/fg/accent/status)" },
   { re: /(?<![\w-])(?:bg|text|border|ring|from|to|via|fill|stroke|outline|shadow)-\[#[0-9a-fA-F]{3,8}\]/g, msg: "raw hex in a class — add a token" },

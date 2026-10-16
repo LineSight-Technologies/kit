@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createRef } from "react";
 import { Field } from "../field/field";
@@ -47,7 +47,7 @@ describe("Select", () => {
     const items = screen.getAllByRole("option");
     expect(items).toHaveLength(3);
     expect(items[2]).toHaveAttribute("data-disabled");
-    fireEvent.pointerUp(screen.getByRole("option", { name: "Cold rolled" }), { button: 0, ctrlKey: false, pointerType: "mouse" });
+    await user.keyboard("{ArrowDown}{Enter}");
     expect(onValueChange).toHaveBeenCalledWith("cr");
   });
 
