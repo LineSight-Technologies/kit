@@ -1,3 +1,6 @@
-// Public surface of @linesight/kit. Components append their exports here in alphabetical order.
+// Public surface of @linesight/kit.
 export { cn } from "./lib/cn";
 export * from "./lib/tone";
+export * from "./primitives/_batch-a1";
+export * from "./primitives/_batch-a2";
+export * from "./primitives/_batch-b";
