@@ -11,10 +11,12 @@
  * tints instead. The kit's class lint enforces this.
  */
 const v = (name: string) => `var(--ls-${name})`;
+/** Colour with Tailwind v3 opacity-modifier support (`bg-ink/50`), via the RGB triplets in tokens.css. */
+const c = (name: string) => `rgb(var(--ls-${name}-rgb) / <alpha-value>)`;
 
 const scale = (name: string, steps: number, extra: Record<string, string> = {}) => {
-  const out: Record<string, string> = { DEFAULT: v(name), ...extra };
-  for (let i = 2; i <= steps; i++) out[String(i)] = v(`${name}-${i}`);
+  const out: Record<string, string> = { DEFAULT: c(name), ...extra };
+  for (let i = 2; i <= steps; i++) out[String(i)] = c(`${name}-${i}`);
   return out;
 };
 
@@ -28,33 +30,33 @@ export const kitTheme = {
   },
   colors: {
     // Semantic (components use these)
-    surface: { DEFAULT: v("surface"), 2: v("surface-2"), 3: v("surface-3"), inverse: v("surface-inverse") },
-    line: { DEFAULT: v("line"), strong: v("line-strong") },
-    fg: { DEFAULT: v("fg"), 2: v("fg-2"), 3: v("fg-3"), disabled: v("fg-disabled"), inverse: v("fg-inverse") },
-    accent: { DEFAULT: v("accent"), hover: v("accent-hover"), fg: v("accent-fg"), soft: v("accent-soft"), foreground: hsl("accent-foreground") },
-    focus: v("focus"),
-    success: { DEFAULT: v("success"), soft: v("success-soft") },
-    warn: { DEFAULT: v("warn"), soft: v("warn-soft") },
-    danger: { DEFAULT: v("danger"), soft: v("danger-soft") },
-    info: { DEFAULT: v("info"), soft: v("info-soft") },
-    neutral: { soft: v("neutral-soft") },
+    surface: { DEFAULT: c("surface"), 2: c("surface-2"), 3: c("surface-3"), inverse: c("surface-inverse") },
+    line: { DEFAULT: c("line"), strong: c("line-strong") },
+    fg: { DEFAULT: c("fg"), 2: c("fg-2"), 3: c("fg-3"), disabled: c("fg-disabled"), inverse: c("fg-inverse") },
+    accent: { DEFAULT: c("accent"), hover: c("accent-hover"), fg: c("accent-fg"), soft: c("accent-soft"), foreground: hsl("accent-foreground") },
+    focus: c("focus"),
+    success: { DEFAULT: c("success"), soft: c("success-soft") },
+    warn: { DEFAULT: c("warn"), soft: c("warn-soft") },
+    danger: { DEFAULT: c("danger"), soft: c("danger-soft") },
+    info: { DEFAULT: c("info"), soft: c("info-soft") },
+    neutral: { soft: c("neutral-soft") },
 
     // Brand primitives (direct access: bg-ink, text-flame-2)
     ink: scale("ink", 6),
     paper: scale("paper", 6),
     flame: scale("flame", 6),
-    ember: { DEFAULT: v("ember"), deep: v("ember-deep") },
+    ember: { DEFAULT: c("ember"), deep: c("ember-deep") },
 
     // Platform legacy names — keep existing classes rendering
-    "ls-success": v("success"),
-    "ls-warn": v("warn"),
-    "ls-danger": v("danger"),
-    "ls-info": v("info"),
-    "steel-grey": v("paper-5"),
-    "waste-red": v("danger"),
-    "kpi-green": v("success"),
-    "kpi-yellow": v("warn"),
-    "kpi-red": v("danger"),
+    "ls-success": c("success"),
+    "ls-warn": c("warn"),
+    "ls-danger": c("danger"),
+    "ls-info": c("info"),
+    "steel-grey": c("paper-5"),
+    "waste-red": c("danger"),
+    "kpi-green": c("success"),
+    "kpi-yellow": c("warn"),
+    "kpi-red": c("danger"),
 
     // shadcn vocabulary (platform legacy)
     border: hsl("border"),
@@ -62,7 +64,7 @@ export const kitTheme = {
     ring: hsl("ring"),
     background: hsl("background"),
     foreground: hsl("foreground"),
-    primary: { DEFAULT: hsl("primary"), foreground: hsl("primary-foreground"), bg: v("paper-2") },
+    primary: { DEFAULT: hsl("primary"), foreground: hsl("primary-foreground"), bg: c("paper-2") },
     secondary: { DEFAULT: hsl("secondary"), foreground: hsl("secondary-foreground") },
     destructive: { DEFAULT: hsl("destructive"), foreground: hsl("destructive-foreground") },
     muted: { DEFAULT: hsl("muted"), foreground: hsl("muted-foreground") },

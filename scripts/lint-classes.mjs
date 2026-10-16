@@ -31,7 +31,7 @@ const RULES = [
   { re: /\[--[\w-]+\]/g, msg: "`[--var]` shorthand changed in v4 — write [var(--x)]" },
   { re: /(?<![\w-])animate-(?:in|out|spin|ping|pulse|bounce)(?![\w-])/g, msg: "plugin/default animations — use animate-ls-*" },
   { re: /(?<![\w-])(?:fade|zoom|slide)-(?:in|out)-/g, msg: "tailwindcss-animate classes — use animate-ls-*" },
-  { re: /(?<![\w-])(?:bg|text|border|ring|from|to|via|fill|stroke|outline|decoration|accent|caret|shadow)-(?:surface|line|fg|accent|focus|success|warn|danger|info|neutral|ink|paper|flame|ember)(?:-[\w]+)?\/\d+/g, msg: "opacity modifiers on token colours do not work in v3 — use the -soft tint" },
+  { re: /(?<![\w-])(?:bg|text|border|ring|from|to|via|fill|stroke|outline|decoration|accent|caret|shadow)-(?:surface|line|fg|accent|focus|success|warn|danger|info|neutral|ink|paper|flame|ember)(?:-[\w]+)?\/\d+/g, msg: "prefer the -soft tint over an opacity modifier on a token colour", warnOnly: true },
   { re: /(?<![\w-])(?:sm|md|lg|xl|2xl):hover:/g, msg: "responsive+hover stacking reads differently in v4 — split the classes" },
   // design rules
   { re: /(?<![\w-])(?:bg|text|border|ring|from|to|via|fill|stroke|outline|decoration|divide|placeholder|shadow)-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d{2,3}(?![\w-])/g, msg: "stock Tailwind hue — use a semantic token (surface/line/fg/accent/status)" },

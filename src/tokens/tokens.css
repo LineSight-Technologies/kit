@@ -57,6 +57,53 @@
   --ls-focus: var(--ls-flame);
   --ls-neutral-soft: var(--ls-paper-3);
 
+  /* ---- RGB triplets (Tailwind v3 opacity modifiers: rgb(var(--ls-ink-rgb) / <alpha-value>)) ---- */
+  --ls-ink-rgb: 26 26 26;
+  --ls-ink-2-rgb: 56 56 56;
+  --ls-ink-3-rgb: 85 85 85;
+  --ls-ink-4-rgb: 115 115 115;
+  --ls-ink-5-rgb: 130 130 130;
+  --ls-ink-6-rgb: 144 144 144;
+  --ls-paper-rgb: 255 252 250;
+  --ls-paper-2-rgb: 247 242 234;
+  --ls-paper-3-rgb: 239 232 221;
+  --ls-paper-4-rgb: 228 218 201;
+  --ls-paper-5-rgb: 194 194 194;
+  --ls-paper-6-rgb: 163 163 163;
+  --ls-flame-rgb: 223 100 40;
+  --ls-flame-2-rgb: 255 125 60;
+  --ls-flame-3-rgb: 255 158 100;
+  --ls-flame-4-rgb: 255 190 148;
+  --ls-flame-5-rgb: 255 206 176;
+  --ls-flame-6-rgb: 255 223 204;
+  --ls-ember-rgb: 43 17 9;
+  --ls-ember-deep-rgb: 18 6 4;
+  --ls-success-rgb: 63 122 75;
+  --ls-success-soft-rgb: 229 240 231;
+  --ls-warn-rgb: 199 122 26;
+  --ls-warn-soft-rgb: 250 238 219;
+  --ls-danger-rgb: 179 49 31;
+  --ls-danger-soft-rgb: 249 228 224;
+  --ls-info-rgb: 47 91 122;
+  --ls-info-soft-rgb: 226 235 241;
+  --ls-accent-hover-rgb: 201 86 31;
+  --ls-surface-rgb: var(--ls-paper-rgb);
+  --ls-surface-2-rgb: var(--ls-paper-2-rgb);
+  --ls-surface-3-rgb: var(--ls-paper-3-rgb);
+  --ls-surface-inverse-rgb: var(--ls-ink-rgb);
+  --ls-line-rgb: var(--ls-paper-4-rgb);
+  --ls-line-strong-rgb: var(--ls-paper-5-rgb);
+  --ls-fg-rgb: var(--ls-ink-rgb);
+  --ls-fg-2-rgb: var(--ls-ink-3-rgb);
+  --ls-fg-3-rgb: var(--ls-ink-4-rgb);
+  --ls-fg-disabled-rgb: var(--ls-ink-6-rgb);
+  --ls-fg-inverse-rgb: var(--ls-paper-rgb);
+  --ls-accent-rgb: var(--ls-flame-rgb);
+  --ls-accent-fg-rgb: var(--ls-paper-rgb);
+  --ls-accent-soft-rgb: var(--ls-flame-6-rgb);
+  --ls-focus-rgb: var(--ls-flame-rgb);
+  --ls-neutral-soft-rgb: var(--ls-paper-3-rgb);
+
   /* ---- Shape ---- */
   --ls-radius-sm: 4px;
   --ls-radius-md: 6px;
