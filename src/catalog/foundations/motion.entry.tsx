@@ -21,11 +21,6 @@ const EXITS = [
   { cls: "animate-ls-slide-out-left", use: "200ms" },
 ];
 
-const LOOPS = [
-  { cls: "animate-ls-shimmer", use: "skeleton sheen" },
-  { cls: "animate-ls-spin", use: "spinner" },
-];
-
 /** Click to re-mount the specimen so the keyframes play again. */
 function Replay({ cls, use }: { cls: string; use: string }) {
   const [run, setRun] = useState(0);
